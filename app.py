@@ -30,7 +30,8 @@ def view():
 
     api_response = requests.post(url, headers=auth, data=payload).json()
     document_id = api_response['id']
-
+    
+    # TODO(seanrose): actually check the document status instead of sleeping for an arbitrary time
     time.sleep(12)
 
     payload = {'document_id': document_id}
@@ -40,6 +41,7 @@ def view():
     api_response = requests.post(url, headers=auth, data=payload).json()
     session_id = api_response['id']
 
+    # TODO(seanrose): make the view base url in settings.py usable here
     view_base_url = 'https://view-api.box.com/view/'
     view_url = '{}{}'.format(view_base_url, session_id)
 
